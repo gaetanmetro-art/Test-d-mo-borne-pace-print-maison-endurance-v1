@@ -671,6 +671,9 @@ function fit(){
   const w = Math.min(innerWidth, document.documentElement.clientWidth || innerWidth, vv ? vv.width : innerWidth);
   const h = Math.min(innerHeight, document.documentElement.clientHeight || innerHeight, vv ? vv.height : innerHeight);
   const s = Math.min(w / 1920, h / 1080);
+  /* Plein écran : la scène s'étire pour remplir l'écran (pas de bandes, quel que soit le format 16:9, 16:10, 4:3…) */
+  stage.style.width = Math.round(w / s) + 'px';
+  stage.style.height = Math.round(h / s) + 'px';
   stage.style.transform = `translate(-50%,-50%) scale(${s})`;
 }
 addEventListener('resize', fit); addEventListener('orientationchange', () => setTimeout(fit, 300));
